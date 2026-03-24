@@ -1,0 +1,46 @@
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS kawak_prueba;
+USE kawak_prueba;
+
+-- Tabla de Procesos
+CREATE TABLE PRO_PROCESO (
+    PRO_ID INT AUTO_INCREMENT PRIMARY KEY,
+    PRO_PREFIJO VARCHAR(20) NOT NULL,
+    PRO_NOMBRE VARCHAR(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Tabla de Tipos de Documento
+CREATE TABLE TIP_TIPO_DOC (
+    TIP_ID INT AUTO_INCREMENT PRIMARY KEY,
+    TIP_NOMBRE VARCHAR(60) NOT NULL,
+    TIP_PREFIJO VARCHAR(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; 
+
+-- Tabla de Documentos
+CREATE TABLE DOC_DOCUMENTO (
+    DOC_ID INT AUTO_INCREMENT PRIMARY KEY,
+    DOC_NOMBRE VARCHAR(60) NOT NULL,
+    DOC_CODIGO VARCHAR(100) NOT NULL, -- Cambiado a VARCHAR para soportar "INS-ING-1"
+    DOC_CONTENIDO VARCHAR(4000) NOT NULL,
+    DOC_ID_TIPO INT NOT NULL,
+    DOC_ID_PROCESO INT NOT NULL,
+    CONSTRAINT fk_tipo FOREIGN KEY (DOC_ID_TIPO) REFERENCES TIP_TIPO_DOC(TIP_ID),
+    CONSTRAINT fk_proceso FOREIGN KEY (DOC_ID_PROCESO) REFERENCES PRO_PROCESO(PRO_ID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; 
+
+
+-- Insertar los 5 Tipos de Documentos requeridos
+INSERT INTO TIP_TIPO_DOC (TIP_NOMBRE, TIP_PREFIJO) VALUES 
+('Instructivo', 'INS'),
+('Manual', 'MAN'),
+('Procedimiento', 'PRO'),
+('Guia', 'GUI'),
+('Formato', 'FOR');
+
+-- Insertar los 5 Procesos requeridos
+INSERT INTO PRO_PROCESO (PRO_NOMBRE, PRO_PREFIJO) VALUES 
+('Ingenieria', 'ING'),
+('Calidad', 'CAL'),
+('Ventas', 'VEN'),
+('Administracion', 'ADM'),
+('Soporte', 'SOP');
