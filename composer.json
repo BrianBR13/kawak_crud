@@ -1,5 +1,5 @@
 {
-    "name": "tu-nombre/kawak-crud",
+    "name": "brian/kawak-crud",
     "description": "Prueba Técnica Ingeniero de Soluciones KAWAK",
     "autoload": {
         "psr-4": {
@@ -8,7 +8,7 @@
     },
     "authors": [
         {
-            "name": "Tu Nombre Real"
+            "name": "Brian Villamil"
         }
     ],
     "require": {}
