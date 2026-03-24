@@ -1,28 +1,30 @@
-<h2>Registrar Nuevo Documento</h2>
+<h2>Registrar Nuevo Documento - BrianBR13</h2>
+
 <form action="/KAWAK_CRUD/public/index.php?action=guardar" method="POST">
+    
     <label>Nombre del Documento:</label><br>
-    <input type="text" name="nombre" required maxlength="60"><br><br>
+    <input type="text" name="nombre" required><br><br>
 
     <label>Tipo de Documento:</label><br>
     <select name="id_tipo" required>
-        <option value="1">Instructivo (INS)</option>
-        <option value="2">Manual (MAN)</option>
-        <option value="3">Procedimiento (PRO)</option>
-        <option value="4">Guía (GUI)</option>
-        <option value="5">Formato (FOR)</option>
+        <?php foreach($tipos as $t): ?>
+            <option value="<?= $t['TIP_ID'] ?>"><?= $t['TIP_NOMBRE'] ?></option>
+        <?php endforeach; ?>
     </select><br><br>
 
     <label>Proceso:</label><br>
     <select name="id_proceso" required>
-        <option value="1">Ingeniería (ING)</option>
-        <option value="2">Calidad (CAL)</option>
-        <option value="3">Ventas (VEN)</option>
-        <option value="4">Administración (ADM)</option>
-        <option value="5">Soporte (SOP)</option>
+        <?php foreach($procesos as $p): ?>
+            <option value="<?= $p['PRO_ID'] ?>"><?= $p['PRO_NOMBRE'] ?></option>
+        <?php endforeach; ?>
     </select><br><br>
 
     <label>Contenido:</label><br>
-    <textarea name="contenido" rows="4" cols="50" required maxlength="4000"></textarea><br><br>
+    <textarea name="contenido" rows="5" cols="40" required></textarea><br><br>
 
     <button type="submit">Guardar y Generar Código</button>
+
 </form>
+
+<br>
+<a href="/KAWAK_CRUD/public/index.php?action=listar">Volver al Listado</a>
